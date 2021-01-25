@@ -1,9 +1,9 @@
 function rule(){
-  const userId = document.getElementById("user_id");
+  const userNickname = document.getElementById("user_nickname");
   const password = document.getElementById("user_password");
   const passwordConfirmation = document.getElementById("user_password_confirmation");
 
-  userId.addEventListener("keyup", () => {
+  userNickname.addEventListener("keyup", () => {
     const userNameRule = document.getElementById("username-rule");
     const userMessage = "半角英数字のみ16文字以内";
     const userHTML = `

@@ -14,8 +14,11 @@
       <p>もしPlans Appのアカウントを持っている場合は<%= link_to '新規登録', new_user_registration_path, class: "regist_session" %>をクリック</p>
     </div>
     <div class="regist-right">
-      <%= form_with url: user_session_path, local: true do |f| %>
-
+      <%= form_with model: @user, url: user_session_path, method: :post, local: true do |f| %>
+        <div class='login-flash-message'>
+          <%= flash[:notice] %>
+          <%= flash[:alert] %>
+        </div>
         <div class="field">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "user-regist" %>
         </div>

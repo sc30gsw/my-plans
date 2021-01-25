@@ -1,0 +1,55 @@
+<div class="wrapper">
+  <%= render 'shared/session_header' %>
+  <div class="mypage">
+    <div class="mypage-left">
+      <div class="mypage-drop">
+        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-ellipsis-h"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">コメント履歴</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">フォローしているユーザー</a>
+          <div class="dropdown-divider"></div>
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+        </div>
+      </div>
+      <div class="mypage-usericon">
+        <p>アイコン</p>
+      </div>
+      <div class="mypage-username">
+        <%= @user.nickname%>
+      </div>
+      <div class="mypage-profile">
+        <%# プロフィールがあるなら表示しない %>
+        <div class="mypage-profile-sentence">
+          プロフィールを編集してみましょう！
+        </div>
+      </div>
+      <div class="mypage-user-details">
+        <div class="mypage-count">
+          <div class="mypage-notes-count">
+            <a href="#" class="detai">投稿</a>
+            <p class="count">0</p>
+          </div>
+          <div class="mypage-favorite-count">
+            <a href="#" class="detail">いいね</a>
+            <p class="count">0</p>
+          </div>
+          <div class="mypage-follower-count">
+            <a href="#" class="detail">フォロワー</a>
+            <p class="count">0</p>
+          </div>
+        </div>
+      </div>
+      <div class="profile-btn">
+        <a class="profile-edit-btn">プロフィールを編集する</a>
+      </div>
+    </div>
+    <div class="user-activity">
+    </div>
+  </div>
+  <div class="mypage-footer">
+    <%= render 'shared/footer' %>
+  </div>
+</div> 
