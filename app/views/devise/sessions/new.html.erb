@@ -1,26 +1,35 @@
-<h2>Log in</h2>
+<div class="regist-wrapper">
+  <%= render "devise/shared/user_header" %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <div class="regist-content">
+    <div class="contents">
+      <div class="welcome">Plans Appにログイン！</div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+  <div class="registration">
+    <div class="regist-left">
+      <a href="#" class="twitter-regist"><i class="fab fa-twitter regist-icon"></i>Twitterアカウントでログイン</a>
+      <a href="#" class="facebook-regist"><i class="fab fa-facebook-square regist-icon"></i>Facebookアカウントでログイン</a>
+      <p>もしPlans Appのアカウントを持っている場合は<%= link_to '新規登録', new_user_registration_path, class: "regist_session" %>をクリック</p>
+    </div>
+    <div class="regist-right">
+      <%= form_with url: user_session_path, local: true do |f| %>
+
+        <div class="field">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "user-regist" %>
+        </div>
+        
+        <div class="password-rule hidden" id="password-rule">
+        </div>
+        <div class="field">
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード", class: "user-regist" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Plans Appにログイン" , class: "regist-btn" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

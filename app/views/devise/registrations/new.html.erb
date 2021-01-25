@@ -18,8 +18,8 @@
       <p>もしPlans Appのアカウントを持っている場合は<%= link_to 'ログイン', new_user_session_path, class: "regist_session" %>をクリック</p>
     </div>
     <div class="regist-right">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+      <%= form_with(model: @user, url: user_registration_path, method: :post, local: true) do |f| %>
+        <%= render "devise/shared/error_messages", model: @user %>
 
         <div class="username-rule hidden" id="username-rule">
         </div>
@@ -27,8 +27,16 @@
           <%= f.text_field :id, autofocus: true, placeholder: "ユーザー名", class: "user-regist" %>
         </div>
 
+        <div class="field">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "user-regist" %>
+        </div>
+
         <div class="password-rule hidden" id="password-rule">
         </div>
+        <div class="field">
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード", class: "user-regist" %>
+        </div>
+
         <div class="field">
           <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード(確認用)", class: "user-regist" %>
         </div>
