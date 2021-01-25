@@ -1,0 +1,77 @@
+<div class="wrapper">
+  <div class="session-header">
+    <%= render 'shared/session_header' %>
+      <div class="session-right">
+        <% if user_signed_in? %>
+          <%# <%= render 'shared/header_links' %> 
+        <% end %>
+        <%= link_to user_path(current_user.id), class: 'upper-usericon' do %>
+          <% if @intro.present?  %>
+            <div class="session-usericon">
+              <%= image_tag @intro.image, class: "index-icon", alt: "ユーザーアイコン"%>
+             </div> 
+           <% else %> 
+            <div class="session-usericon">
+              <img src="/assets/default.png" class="index-icon" alt="ユーザーアイコン">
+            </div>
+          <% end %> 
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-form">
+    <%= form_with model: @intro, local: true do |f| %>
+    <div class="profile-fields">
+      <div class="who-profile">
+        <%= link_to user_path(current_user.id), class: 'upper-usericon' do %>
+          <% if @intro.present? %>
+            <div class="profile-usericon">
+              <%= image_tag @intro.image, class: "profile-usericon", alt: "ユーザーアイコン"%>
+             </div> 
+           <% else %> 
+            <div class="profile-usericon">
+              <img src="/assets/default.png" class="profile-usericon" alt="ユーザーアイコン">
+            </div>
+          <% end %> 
+        <% end %>
+        <div class="profile-nickname">
+          <%= @intro.user.nickname %><span>アカウント</span>
+        </div>
+      </div>
+      <h3 class="profile-title">公開用プロフィール</h3>
+      <%= f.label '名前', class: 'user_name_label' %>
+      <div class="profile-name-field">
+        <%= f.text_field :first_name, class: "first_name", id: "firstname", placeholder: "名" %>
+        <%= f.text_field :last_name, class: "last_name", id: "lastname", placeholder: "姓" %>
+      </div>
+    
+      <%= f.label 'サイト/ブログ', class:'website_label' %>
+      <div class="profile-website-field">
+        <%= f.text_field :website, class:"website", id: "website" %>
+      </div>
+
+      <%= f.label '自己紹介', class: 'profile_label' %>
+      <div class="profile-intro-field">
+        <%= f.text_area :profile, class: "profile", id: "profile", maxlength: 200 %>
+        <div class="field-help">200文字以内</div>
+      </div>
+
+      <%= f.label 'プロフィール画像', class: 'user_image_label'%>
+        <span class="preview-sentence">プレビュー</span>
+      <div class="profile-image-field">
+        <span class="user_image">画像</span>
+        <%= f.file_field :image, class: "usericon_image", id: "user_image" %>
+        <span id='image-list' class="image-list"></span>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "更新する", class: "update" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div class="profile-footer">
+    <%= render 'shared/footer' %>
+  </div>
+</div>

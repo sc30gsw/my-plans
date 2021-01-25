@@ -1,5 +1,24 @@
 <div class="wrapper">
-  <%= render 'shared/session_header' %>
+  <div class="session-header">
+    <%= render 'shared/session_header' %>
+      <div class="session-right">
+        <% if user_signed_in? %>
+          <%# <%= render 'shared/header_links' %> 
+        <% end %>
+        <%= link_to user_path(current_user.id), class: 'upper-usericon' do %>
+          <% if current_user.intro.present? %>
+            <div class="session-usericon">
+              <%= image_tag current_user.intro.image, class: "index-icon", alt: "ユーザーアイコン" %>
+              </div> 
+            <% else %> 
+            <div class="session-usericon">
+              <img src="/assets/default.png" class="index-icon" alt="ユーザーアイコン" >
+            </div>
+          <% end %> 
+        <% end %>
+      </div>
+    </div>
+  </div>
   <div class="mypage">
     <div class="mypage-left">
       <div class="mypage-drop">
@@ -7,49 +26,208 @@
           <i class="fas fa-ellipsis-h"></i>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">コメント履歴</a>
+          <% if user_signed_in? %>
+              <% unless @user.intro.present? %>
+                <% if current_user.id == @user.id %>
+                   <div class="dropdown-item">
+                    <%= link_to 'プロフィールを編集する', new_intro_path, class: "profile-edit" %>
+                  </div>
+                <% end %>
+              <% end %>
+              <% if current_user.id == @user.id && @user.intro.present? %>
+                <div class="dropdown-item">
+                  <%= link_to 'プロフィールを編集する', edit_intro_path(@user.intro.id), class: "profile-edit" %>
+                </div>
+              <% end %>
+              <div class="dropdown-divider"></div>
+              <% if current_user.id == @user.id %>
+                <div class="dropdown-item">
+                  <%= link_to 'アクションをメモする', "/memos/user/#{current_user.id}", class: "profile-memo" %>
+                </div>
+              <% end %>
+           <% end %>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">フォローしているユーザー</a>
-          <div class="dropdown-divider"></div>
-          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            <% if user_signed_in? && current_user.id == @user.id %>
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "dropdown-item logout-item" %>
+            <% end %>
         </div>
       </div>
-      <div class="mypage-usericon">
-        <p>アイコン</p>
-      </div>
-      <div class="mypage-username">
-        <%= @user.nickname%>
-      </div>
-      <div class="mypage-profile">
-        <%# プロフィールがあるなら表示しない %>
-        <div class="mypage-profile-sentence">
-          プロフィールを編集してみましょう！
+      <% if @user.intro.present? %>
+        <div class="mypage-usericon">
+          <%= image_tag @user.intro.image, class: "index-icon", alt: "ユーザーアイコン" %>
         </div>
-      </div>
+      <% else %>
+        <div class="mypage-usericon">
+          <img src="/assets/default.png" class="intro-icon " alt="ユーザーアイコン" >
+        </div>
+      <% end %>
+      
+      <% if @user.intro.present? %>
+        <div class="mypage-name">
+          <div class="mypage-first-name">
+            <%= @user.intro.first_name %>
+          </div>
+          <div class="mypage-last-name">
+            <%= @user.intro.last_name %>
+          </div>
+        </div>
+        <div class="mypage-up-username">
+          <div class="mypage-up-nickname">
+            <%= @user.nickname%>
+          </div>
+        </div>
+      <% else %>
+        <div class="mypage-username">
+          <div class="mypage-nickname">
+            <%= @user.nickname%>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @user.intro.present? %>
+        <div class="mypage-web">
+         <a href="#"><i class="fas fa-clipboard-list"></i><%= @user.intro.website %></a>
+        </div>
+      <% end %>
+
+      <% if @user.intro.present? %>
+        <div class="mypage-introduce">
+           <div class="introduce">
+            <%= @user.intro.profile %>
+          </div>
+        </div>
+      <% else %>
+        <div class="mypage-profile">
+          <div class="mypage-profile-sentence">
+            プロフィールを編集してみましょう！
+          </div>
+        </div>
+      <% end %>
       <div class="mypage-user-details">
         <div class="mypage-count">
           <div class="mypage-notes-count">
-            <a href="#" class="detai">投稿</a>
-            <p class="count">0</p>
+            <%= link_to '投稿', user_path(@user.id), class: "detai" %>
+             <%# <p class="count"><%= @user.notes.count ></p> %>
           </div>
           <div class="mypage-favorite-count">
-            <a href="#" class="detail">いいね</a>
-            <p class="count">0</p>
+            <%= link_to 'いいね', "/favorites/user/#{@user.id}", class: "detail" %>
+            <%# <p class="count"><%= @user.favorites.count ></p> %>
+          </div>
+           <div class="mypage-favorite-count">
+            <%= link_to  'コメント', "/comments/user/#{@user.id}", class: "detail" %>
+            <%# <p class="count"><%= @user.comments.count ></p> %>
           </div>
           <div class="mypage-follower-count">
-            <a href="#" class="detail">フォロワー</a>
-            <p class="count">0</p>
+            <%= link_to 'フォロー', "/followings/user/#{@user.id}", class: "detail" %>
+            <%# <p class="count"><%= @user.followings.count></p> %>
+          </div>
+          <div class="mypage-follower-count">
+            <%= link_to 'フォロワー', "/followers/user/#{@user.id}", class: "detail" %>
+            <%# <p class="count"><%= @user.followers.count ></p> %>
           </div>
         </div>
-      </div>
-      <div class="profile-btn">
-        <a class="profile-edit-btn">プロフィールを編集する</a>
+        <div class="follow-btn">
+          <% unless current_user.id == @user.id %>
+              <% if current_user.following?(@user) %>
+                <%= render 'unfollow' %>
+              <% else %>
+                <%= render 'follow' %>
+              <% end %>
+          <% end %>
+        </div>
+        <% unless current_user.id == @user.id %>
+          <% if (current_user.following?(@user)) && (@user.following?(current_user)) %>
+            <% if @isRoom == true %>
+              <p class="user-show-room">
+                <%= link_to room_path(@roomId), class: "btn btn-primary btn-lg" do %>
+                  <i class="far fa-comments show-room-icon"></i>チャットへ
+                <% end %>
+              </p>
+            <% else %>
+              <%= form_for @room do |f| %>
+                <%= fields_for @entry do |e| %>
+                  <%= e.hidden_field :user_id, value: @user.id %>
+                <% end %>
+                <%= f.submit "チャットを始める", class: "btn btn-primary btn-lg user-show-chat" %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
       </div>
     </div>
-    <div class="user-activity">
+    <div class="mypage-right">
+      <div class="user-activity">
+        <% if @user == current_user %>
+          <div class="user-analyze">
+            <span class="activity">Activity</span>
+              <div class="weekly-count">
+                <% 7.times do |x|%>
+                  <%# <% if @user.notes.exists?(['created_at LIKE ?', "%#{(Date.today - 6 + x)}%"]%> 
+                    <div class='weekly-count-day'>
+                      <span><%= (Date.today - 6 + x).strftime('%a') %></span>
+                      <span><%= (Date.today - 6 + x).strftime('%e') %></span>
+                    </div>
+                  <%# <% else %> 
+                    <div class='weekly-count-day-off'>
+                      <span><%= (Date.today - 6 + x).strftime('%a') %></span>
+                      <span><%= (Date.today - 6 + x).strftime('%e') %></span>
+                    </div>
+                  <%# <% end%> 
+                <% end %>
+              </div>
+              <span class="status">1 Week</span>
+                <div class="status-count">
+                  <div class="status-count-block">
+                    <span>New</span>
+                    <%= @all_count %>
+                  </div>
+                  <div class="status-count-block">
+                    <span>LIKED</span>
+                    <%# <%= @favorited_notes.count %> 
+                  </div>
+                  <div class="status-count-block">
+                    <span>COMMENTED</span>
+                    <%# <%= @commented_notes.count %> 
+                  </div>
+                </div>
+          </div>
+        <% end %>
+        <div class="mypage-notes">
+          <h6 class="mypage-notes-title"><i class="fas fa-square mypage-squere"></i>全ての投稿</h6>
+          <div class="my-plans">
+            <%# <% @notes.each do |note| %> 
+              <div class="mypage-note-tag">
+                <%# <% note.tags.each do |tag| %> 
+                  <i class="fas fa-tags mypage-tag-img"></i>
+                  <%= link_to "##{tag.name}", "/tag/#{tag.id}/notes", class: "tag" %>
+                <%# <% end %> 
+              </div>
+              <%# <%= link_to note_path(note.id), class: "mypage_note_show" do %> 
+                <div class="mypage-note-title">
+                  <%# <h3><%= note.title ></h3> %>
+                </div>
+              <%# <% end %> 
+              <div class="mypage-note-opt">
+                <div class="mypage-detail">
+                  <div class="mypage-fav-comment">
+                    <%# <i class="fas fa-book mypage-like-btn"></i><span><%= note.favorites.count ></span> %>
+                    <%# <i class="far fa-comment mypage-comment-btn"></i><span><%= note.comments.count ></span> %>
+                  </div>
+                  <div class="mypage-created">
+                    <%# <div class="mypage-time"><%= note.created_at.strftime('%Y/%m/%d') ></div> %>
+                  </div>
+                </div>
+              </div>
+            <%# <% end %> 
+          </div>
+        </div>
+        <div class="mypage-nation">
+          <%# <%= paginate @notes %> 
+        </div>
+      </div>
     </div>
   </div>
   <div class="mypage-footer">
     <%= render 'shared/footer' %>
   </div>
-</div> 
+</div>
