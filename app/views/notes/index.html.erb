@@ -1,23 +1,15 @@
 <div class="wrqpper">
   <header>
-    <%# if user_signed_in? %>
-      <%# <div class="upper-header">
-        <div class="upper-left">
-          <a href="#">Plans App</a>
-        </div>
-        <div class="upper-right">
-          <a href="#" class="upper-notifi">通知</a>
-          <a href="#" class="upper-icon">ユーザーアイコン</a>
-        </div>
-      </div> %>
-    <%# else %> 
+    <% if user_signed_in? %>
+      <%= render 'shared/session_header' %>
+    <% else %> 
       <div class="upper-header">
         <div class="upper-left">
-          <a href="#">Plans App</a>
+          <%= link_to "Plans App", root_path %>
         </div>
         <div class="upper-right">
-          <a href="#" class="upper-regist">ユーザー登録</a>
-          <a href="#" class="upper-session">ログイン</a>
+          <%= link_to "ユーザー登録", new_user_registration_path, class: "upper-regist" %>
+          <%= link_to "ログイン", new_user_session_path, class: "upper-session" %>
         </div>
       </div>
       <div class="lower-header">
@@ -34,7 +26,7 @@
           </div>
         </div>
       </div>
-    <%# end %>
+    <% end %>
   </header>
   <main>
     <div class="search-form">
