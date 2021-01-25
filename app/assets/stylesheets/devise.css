@@ -1,0 +1,298 @@
+.header {
+  height: 10vh;
+}
+
+.header-title {
+  width: 160px;
+  margin-top: 30px;
+  margin-left: 10vw;
+  text-align: center;
+  padding: 8px 12px;
+  background-color: rgb(56, 135, 224);
+}
+
+.header-link {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.header-title:hover {
+  opacity: 0.7;
+}
+
+.header-link:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.contents {
+  margin-left: 20vw;
+}
+
+.welcome {
+  letter-spacing: 1px;
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.welcome-sub {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.registration {
+  border-top: solid 1px lightgray;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.regist-left {
+  width: 36vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.regist-left a {
+  text-decoration: none;
+}
+
+.regist-left p {
+  color: gray;
+  opacity: 0.8;
+  margin-top: 5px;
+}
+
+.regist_session {
+  text-decoration: none;
+  color: rgb(44, 128, 255);
+  border-bottom: solid 1px white;
+}
+
+.regist_session:hover {
+  border-bottom: solid 1px #3b5998;
+  color: #3b5998;
+  text-decoration: none;
+}
+
+.twitter-regist {
+  padding: 10px;
+  text-align: center;
+  color: white;
+  border: solid 1px #6baae8;
+  border-radius: 2px;
+  background-color: #6baae8;
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.twitter-regist:hover {
+  opacity: 0.7;
+  text-decoration: none;
+  color: white;
+}
+
+.facebook-regist {
+  padding: 10px;
+  text-align: center;
+  color: white;
+  border: solid 1px #3b5998;
+  border-radius: 2px;
+  background-color: #3b5998;
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.facebook-regist:hover {
+  opacity: 0.7;
+  text-decoration: none;
+  color: white;
+}
+
+.regist-icon {
+  margin-right: 5px;
+  font-size: 20px;
+}
+
+.regist-right {
+  margin-top: 10px;
+}
+
+.error-flash-message {
+  color: red;
+}
+
+.error-alert li {
+  list-style: none;
+}
+
+.username-rule {
+  width: 26vw;
+  margin-bottom: 2px;
+  position: relative;
+  z-index: 1;
+  background-color: #2a2a2a;
+  border: solid 1px #2a2a2a;
+  border-radius: 5px;
+  padding: 6px 15px;
+  font-size: 12px;
+  color: white;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.username-rule::before {
+  content: "";
+  position: absolute;
+  border: solid 8px transparent;
+  border-top: solid 6px #2a2a2a;
+  top: 100%;
+  left: 50%;
+  -webkit-transform: translateX(50%);
+  transform: translateX(-50%);
+}
+
+.password-rule {
+  width: 26vw;
+  margin-top: 5px;
+  margin-bottom: 2px;
+  position: relative;
+  z-index: 1;
+  background-color: #2a2a2a;
+  border: solid 1px #2a2a2a;
+  border-radius: 5px;
+  padding: 6px 15px;
+  font-size: 12px;
+  color: white;
+  text-align: center;
+}
+
+.password-rule::before {
+  content: "";
+  position: absolute;
+  border: solid 8px transparent;
+  border-top: solid 6px #2a2a2a;
+  top: 100%;
+  left: 50%;
+  -webkit-transform: translateX(50%);
+  transform: translateX(-50%);
+}
+
+.user-regist {
+  width: 26vw;
+  height: 25px;
+  margin-top: 10px;
+  padding: 5px 20px;
+  background-color: white;
+  font-size: 13px;
+  border-radius: 1px;
+  border: solid 1px grey;
+}
+
+.check {
+  display: flex;
+  margin-top: 10px;
+}
+
+.check a {
+  text-decoration: none;
+  color: rgb(44, 128, 255);
+  font-weight: bold;
+  margin-left: 5px;
+  border-bottom: solid 1px white;
+}
+
+.check a:hover {
+  border-bottom: solid 1px #3b5998;
+  color: #3b5998;
+  text-decoration: none;
+}
+
+.regist-sessions {
+  margin-top: 20px;
+}
+
+.regist-btn {
+  width: 26vw;
+  height: 38px;
+  padding: 5px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(56, 135, 224);
+  border: solid 1px rgb(56, 135, 224);
+}
+
+.regist-btn:hover {
+  background-color: #3e3e3e;
+  opacity: 0.7;
+}
+
+@media (max-width: 599px) {
+  .header-link {
+    font-size: 15px;
+  }
+  .welcome {
+    font-size: 20px;
+  }
+
+  .welcome-sub {
+    font-size: 12px;
+  }
+
+  .regist-left {
+    margin-left: 20px;
+  }
+
+  .regist-left a {
+    font-size: 10px;
+  }
+
+  .regist-left p {
+    font-size: 10px;
+  }
+
+  .regist-right {
+    margin-left: 30px;
+  }
+
+  .regist-icon {
+    font-size: 15px;
+  }
+
+  .check {
+    font-size: 10px;
+  }
+
+  .checkbox {
+    width: 10px;
+    height: 10px;
+  }
+
+  .regist-sessions input {
+    font-size: 12px;
+    width: 40vw;
+  }
+
+  .user-regist {
+    width: 40vw;
+  }
+
+  .error-flash-message li {
+    font-size: 10px;
+    word-break: break-all;
+  }
+}
