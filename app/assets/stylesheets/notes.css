@@ -1,0 +1,107 @@
+header {
+  height: 40vh;
+  background-color: rgb(56, 135, 224);
+}
+
+.upper-header {
+  width: 100vw;
+  height: 10vh;
+  display: flex;
+  justify-content: space-around;
+}
+
+.upper-left {
+  margin-top: 30px;
+}
+
+.upper-left a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upper-right {
+  margin-top: 30px;
+}
+
+.upper-right a {
+  margin-left: 10px;
+  text-decoration: none;
+  color: white;
+}
+
+/* .upper-notifi {
+}
+.upper-icon {
+} */
+
+.upper-regist {
+  border: solid 1px white;
+  border-width: medium;
+  border-radius: 7%;
+  padding: 8px;
+}
+
+.lower-header {
+  height: 30vh;
+  width: 100vw;
+  display: flex;
+  background-image: url("https://img.freepik.com/free-vector/reading-books-seamless-pattern_204216-58.jpg?size=338&ext=jpg");
+}
+
+.lower-left {
+  height: 25vh;
+  width: 50vw;
+  text-align: center;
+}
+
+.catch-copy {
+  margin: 20px auto 0;
+  width: 40vw;
+  background-color: white;
+  border: solid 1px white;
+  border-width: medium;
+  border-radius: 5%;
+  padding: 10px 5px;
+}
+
+.explain {
+  margin: 20px auto 0;
+  width: 40vw;
+  background-color: white;
+  border: solid 1px white;
+  border-width: medium;
+  border-radius: 5%;
+  padding: 10px 5px;
+}
+
+.lower-right {
+  height: 25vh;
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.twitter-session {
+  margin-right: 5px;
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  border: solid 1px white;
+  border-width: medium;
+  border-radius: 7%;
+  padding: 7px 15px;
+}
+
+.facebook-session {
+  margin-left: 5px;
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  border: solid 1px white;
+  border-width: medium;
+  border-radius: 7%;
+  padding: 7px 15px;
+}
