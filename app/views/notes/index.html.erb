@@ -2,6 +2,8 @@
   <header>
     <% if user_signed_in? %>
       <%= render 'shared/session_header' %>
+      <%= link_to 'ログイン', destroy_user_session_path, method: :delete %>
+      <%= link_to 'ユーザー', user_path(current_user.id) %>
     <% else %> 
       <div class="upper-header">
         <div class="upper-left">

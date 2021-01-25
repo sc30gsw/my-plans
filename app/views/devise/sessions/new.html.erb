@@ -9,27 +9,31 @@
 
   <div class="registration">
     <div class="regist-left">
-      <a href="#" class="twitter-regist"><i class="fab fa-twitter regist-icon"></i>Twitterアカウントでログイン</a>
-      <a href="#" class="facebook-regist"><i class="fab fa-facebook-square regist-icon"></i>Facebookアカウントでログイン</a>
+      <%# <%= link_to user_twitter_omniauth_authorize_path, method: :post, class: "twitter-regist" do %> 
+        <i class="fab fa-twitter regist-icon"></i>Twitterアカウントでログイン
+      <%# <% end %> 
+      <%# <%= link_to user_facebook_omniauth_authorize_path, method: :post, class: "facebook-regist" do %> 
+        <i class="fab fa-facebook-square regist-icon"></i>Facebookアカウントでログイン
+      <%# <% end %> 
       <p>もしPlans Appのアカウントを持っている場合は<%= link_to '新規登録', new_user_registration_path, class: "regist_session" %>をクリック</p>
     </div>
     <div class="regist-right">
       <%= form_with model: @user, url: user_session_path, method: :post, local: true do |f| %>
-        <div class='login-flash-message'>
+        <div class='error-flash-message'>
           <%= flash[:notice] %>
           <%= flash[:alert] %>
         </div>
         <div class="field">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "user-regist" %>
         </div>
-        
+
         <div class="password-rule hidden" id="password-rule">
         </div>
         <div class="field">
           <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード", class: "user-regist" %>
         </div>
 
-        <div class="actions">
+        <div class="regist-sessions">
           <%= f.submit "Plans Appにログイン" , class: "regist-btn" %>
         </div>
       <% end %>

@@ -1,15 +1,3 @@
-<div class="session-header">
-  <div class="session-left">
-    <%= link_to "Plans App", root_path %>
-  </div>
-  <div class="session-right">
-    <%= link_to root_path do %>
-      <i class="fas fa-home home"></i>
-    <% end %>
-    <a href="#" class="post"><i class="fas fa-pen-square"></i>投稿する</a>
-    <a href="#" class="upper-notification"><i class="far fa-bell"></i>0</a>
-    <%= link_to user_path(current_user.id), class: 'upper-usericon' do %>
-      ユーザーアイコン
-    <% end %>
-  </div>
-</div> 
+<div class="session-left">
+  <%= link_to "Plans App", root_path %>
+</div>
