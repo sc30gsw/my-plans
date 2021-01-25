@@ -1,3 +1,7 @@
+.wrapper {
+  overflow: scroll;
+}
+
 header {
   height: 40vh;
   background-color: rgb(56, 135, 224);
@@ -21,6 +25,10 @@ header {
   font-weight: bold;
 }
 
+.upper-left a:hover {
+  color: lightgrey;
+}
+
 .upper-right {
   margin-top: 30px;
 }
@@ -29,6 +37,14 @@ header {
   margin-left: 10px;
   text-decoration: none;
   color: white;
+}
+
+.upper-regist:hover {
+  background-color: rgba(192, 237, 232, 0.5);
+}
+
+.upper-session:hover {
+  border-bottom: solid 1px white;
 }
 
 /* .upper-notifi {
@@ -51,7 +67,7 @@ header {
 }
 
 .lower-left {
-  height: 25vh;
+  height: 20vh;
   width: 50vw;
   text-align: center;
 }
@@ -67,7 +83,7 @@ header {
 }
 
 .explain {
-  margin: 20px auto 0;
+  margin: 20px auto 10px;
   width: 40vw;
   background-color: white;
   border: solid 1px white;
@@ -77,11 +93,22 @@ header {
 }
 
 .lower-right {
-  height: 25vh;
+  height: 20vh;
   width: 50vw;
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+.sns-login {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+  background-color: white;
+  border: solid 1px white;
+  border-width: medium;
+  border-radius: 5%;
+  padding: 7px 15px;
 }
 
 .twitter-session {
@@ -95,6 +122,20 @@ header {
   padding: 7px 15px;
 }
 
+.twitter-session:hover {
+  background-color: lightgray;
+  border: solid 1px lightgrey;
+  border-width: medium;
+  border-radius: 7%;
+  padding: 7px 15px;
+}
+
+.twitter-icon {
+  margin-right: 5px;
+  color: rgb(71, 187, 233);
+  font-size: 20px;
+}
+
 .facebook-session {
   margin-left: 5px;
   text-decoration: none;
@@ -104,4 +145,288 @@ header {
   border-width: medium;
   border-radius: 7%;
   padding: 7px 15px;
+}
+
+.facebook-session:hover {
+  background-color: lightgray;
+  border: solid 1px lightgrey;
+  border-width: medium;
+  border-radius: 7%;
+  padding: 7px 15px;
+}
+
+.facebook-icon {
+  margin-right: 5px;
+  color: rgb(8, 100, 238);
+  font-size: 20px;
+}
+
+.search-form {
+  padding: 30px 0;
+  text-align: center;
+}
+
+.search-input {
+  width: 50vw;
+  padding: 5px;
+}
+
+.search-btn {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.search-btn:hover {
+  cursor: pointer;
+}
+
+main {
+  width: 100vw;
+  background-color: rgb(240, 236, 236);
+}
+
+.feed {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.feed a {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: gray;
+  font-weight: bold;
+  border-radius: 7%;
+  padding: 7px 15px;
+}
+
+.feed a:hover {
+  background-color: lightgray;
+}
+
+.notes-trend {
+  margin: 0 auto;
+  background-color: white;
+  width: 70vw;
+}
+
+.note-fire {
+  border-bottom: solid 1px lightgray;
+  padding: 10px;
+}
+
+.trend-fire {
+  color: rgb(87, 154, 255);
+  font-size: 20px;
+}
+
+.note-user {
+  display: flex;
+  padding-top: 10px;
+  padding-left: 15px;
+}
+
+.note-user a {
+  text-decoration: none;
+}
+
+.user-icon {
+  background-color: tomato;
+  color: white;
+  border-radius: 100%;
+  padding: 3px;
+  margin-right: 5px;
+}
+
+.user-id {
+  color: black;
+}
+
+.created-at {
+  color: gray;
+  padding-left: 5px;
+}
+
+.note-title {
+  padding: 10px 0;
+  padding-left: 15px;
+}
+
+.note-tag {
+  padding-left: 15px;
+  padding-bottom: 10px;
+}
+
+.tag {
+  text-decoration: none;
+  color: black;
+}
+
+.note-opt {
+  display: flex;
+  border-bottom: 1px solid lightgray;
+}
+
+.like-btn {
+  width: 25px;
+  height: 30px;
+  font-size: 25px;
+  color: #808080;
+  margin-left: 20px;
+}
+
+.comment-btn {
+  width: 25px;
+  height: 30px;
+  font-size: 25px;
+  color: #808080;
+  margin-left: 20px;
+}
+
+.more-note {
+  padding: 10px 0;
+}
+
+.more-link {
+  text-decoration: none;
+  color: black;
+}
+
+.more-link:hover {
+  border-bottom: solid 1px black;
+}
+
+.footer {
+  width: 100vw;
+  margin-top: 30px;
+  padding: 30px 0;
+  display: flex;
+  background-color: #3e3e3e;
+}
+
+.footer-left {
+  width: 50vw;
+}
+
+.concept {
+  text-align: center;
+}
+
+.footer-title {
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.footer-copy {
+  color: white;
+  font-weight: bold;
+  margin-top: 7px;
+}
+
+.footer-sns {
+  margin-top: 5px;
+}
+
+.twitter-link {
+  margin-right: 5px;
+}
+
+.footer-twitter {
+  color: #b3b3b3;
+  font-size: 20px;
+}
+
+.footer-twitter:hover {
+  color: rgba(192, 237, 232, 0.5);
+}
+
+.footer-facebook {
+  color: #b3b3b3;
+  font-size: 20px;
+}
+
+.footer-facebook:hover {
+  color: rgba(192, 237, 232, 0.5);
+}
+
+.small {
+  margin-top: 40px;
+  color: #b3b3b3;
+}
+
+.footer-right {
+  width: 50vw;
+  font-display: flex;
+}
+
+.footer-info {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.information {
+  color: white;
+}
+
+.information-lists {
+  margin-left: 10px;
+}
+
+.information-lists li {
+  list-style: none;
+  margin-top: 5px;
+  color: #b3b3b3;
+}
+
+.information-lists li:hover {
+  display: inline-block;
+  border-bottom: solid 1px #b3b3b3;
+}
+
+.information-lists a {
+  text-decoration: none;
+}
+
+.information-lists-second li {
+  margin-top: 5px;
+  color: #b3b3b3;
+}
+
+.information-lists-second li:hover {
+  display: inline-block;
+  border-bottom: solid 1px #b3b3b3;
+}
+
+.information-lists-second a {
+  text-decoration: none;
+}
+
+.example {
+  margin-left: 15px;
+}
+
+.increments {
+  color: white;
+}
+
+.example-lists {
+  margin-left: 15px;
+}
+
+.example-lists li:hover {
+  display: inline-block;
+  border-bottom: solid 1px #b3b3b3;
+}
+
+.example-lists li {
+  list-style: none;
+  color: #b3b3b3;
+  margin-top: 3px;
+}
+
+.example-lists a {
+  text-decoration: none;
 }
