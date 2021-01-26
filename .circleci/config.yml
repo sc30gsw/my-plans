@@ -1,36 +1,40 @@
 version: 2.1
+
 orbs:
-  ruby: circleci/ruby@0.1.2 
-  heroku: circleci/heroku@1.2.3
+  ruby: circleci/ruby@1.1.0
+
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.5-stretch-node
-    executor: ruby/default
+      - image: circleci/ruby:2.6.5-node-browsers
+        environment:
+          BUNDLER_VERSION: 2.1.4
     steps:
       - checkout
       - run: gem install bundler -v 2.1.4
       - run:
           name: Which bundler?
           command: bundle -v
-      - ruby/bundle-install
+      - ruby/install-deps
 
   deploy:
     docker:
-      - image: buildpack-deps:trusty
-    executor: heroku/default
+      - image: circleci/ruby:2.6.5-node-browsers
+        environment:
+          BUNDLER_VERSION: 2.1.4
     steps:
       - checkout
-      - run:
-          name: Heroku への master のデプロイ
-          command: |
-            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+      - ruby/install-deps
+      - add_ssh_keys:
+          fingerprints: "4b:05:89:d4:3e:d7:6f:75:67:f6:a3:43:95:ce:c9:b3"
+      - deploy:
+          name: Capistrano deploy
+          command: bundle exec cap production deploy
 
 workflows:
   version: 2.1
   build-deploy:
     jobs:
-
       - build
       - deploy:
           requires:
