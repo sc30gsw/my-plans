@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_26_013731) do
+ActiveRecord::Schema.define(version: 2021_01_26_024612) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -62,6 +62,15 @@ ActiveRecord::Schema.define(version: 2021_01_26_013731) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_intros_on_user_id"
+  end
+
+  create_table "memos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "content", null: false
+    t.boolean "checked"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_memos_on_user_id"
   end
 
   create_table "note_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -138,6 +147,7 @@ ActiveRecord::Schema.define(version: 2021_01_26_013731) do
   add_foreign_key "favorites", "notes"
   add_foreign_key "favorites", "users"
   add_foreign_key "intros", "users"
+  add_foreign_key "memos", "users"
   add_foreign_key "note_tags", "notes"
   add_foreign_key "note_tags", "tags"
   add_foreign_key "notes", "users"

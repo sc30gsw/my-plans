@@ -1,0 +1,54 @@
+<div class="session-header">
+  <% if user_signed_in? %>
+    <%= render 'shared/note_header' %>
+  <% else %>
+    <div class="show-header">  
+      <div class="upper-header">
+        <div class="upper-left">
+           <%= link_to "Plans App", root_path %>
+        </div>
+        <div class="upper-right">
+          <%= link_to "ユーザー登録", new_user_registration_path, class: "upper-regist" %>
+          <%= link_to "ログイン", new_user_session_path, class: "upper-session" %>
+          <%= link_to 'ゲストログイン（閲覧用）',  users_guest_sigin_in_path, method: :post, class: "guest-session" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="memo-main">
+  <div class="memo-user-nickname">
+    <span><b><%= @user.nickname%></b>'s Plans</span>
+  </div>
+  <div class="memo-form">
+    <%= form_with url: memos_path, method: :post,id: "form", class: "memo-fields", local: true do |f| %>
+      <%= f.text_field :content, id: "content", class: "memo-content-field" %>
+      <%= f.submit '追加する' , id: "submit", class: "memo-submit" %>
+    <% end %>
+  </div>
+  <div class="grid">
+    <div class="box box1">
+      <span>Action To Do</span>
+      <% @memos.each do |memo| %>
+        <div class="memo" data-id=<%= memo.id %> data-check=<%= memo.checked %>>
+          <div class="item" id="item" draggable="true">
+            <div class="memo-date">
+              追加日時：<%= memo.created_at.strftime('%Y/%m/%d') %>
+            </div>
+            <div class="memo-content">
+              <%= memo.content %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="box box2">
+      <span>Cleared Action's</span>
+    </div>
+  </div>
+  <div class="memo-destroy-box">
+      <%= link_to memo_path, method: :delete, class: "memo-delete-link" do %>
+        <i class="fas fa-trash-alt memo-destroy"></i>一括削除
+      <% end %>
+    </div>
