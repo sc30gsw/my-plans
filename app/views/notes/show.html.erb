@@ -1,0 +1,195 @@
+<div class="wrqpper">
+  <% if user_signed_in? %>
+    <%= render 'shared/note_header' %>
+  <% else %>
+    <div class="show-header">  
+      <div class="upper-header">
+        <div class="upper-left">
+          <%= link_to "Plans App", root_path %>
+        </div>
+        <div class="upper-right">
+          <%= link_to "ユーザー登録", new_user_registration_path, class: "upper-regist" %>
+          <%= link_to "ログイン", new_user_session_path, class: "upper-session" %>
+          <%= link_to 'ゲストログイン（閲覧用）',  users_guest_sigin_in_path, method: :post, class: "guest-session" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="show-wrapper">
+    <div class="show-main">
+      <div class="show-top">
+        <div class="show-top-info">
+          <div class="show-top-profile">
+          <% if user_signed_in? %>
+            <%= link_to user_path(@note.user.id) do %>
+              <% if @note.user.intro.present? %>
+                <%= image_tag @note.user.intro.image, class: "show-top-icon", alt: "ユーザーアイコン" %>
+              <% else %>
+                <img src="/assets/default.png" class="show-top-icon" alt="ユーザーアイコン">
+              <% end %>
+            <% end %>
+            <%= link_to @note.user.nickname, user_path(@note.user.id), class:'show-top-username' %>
+          <% end %>
+          </div>
+          <% if user_signed_in? && @note.user_id == current_user.id%>
+            <div class="show-top-command">
+              <div class="plan-drop">
+                <a class="nav-link" href="#" id="navbarPlanDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-cog"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%= link_to edit_note_path(@note.id), class:'dropdown-item' do %>
+                    <i class="fas fa-clipboard save"></i>編集する
+                  <% end %>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to note_path(@note.id), method: :delete, class: 'dropdown-item' do %>
+                    <i class="fas fa-upload upload"></i>削除する
+                  <% end %>
+                </div>
+              </div>
+            </div> 
+          <% end %>
+        </div>
+        <span class="show-top-created"><%= @note.created_at.strftime('%Y年%m月%d日') %>に更新</span>
+        <div class="show-top-caption">
+          <div class="show-top-title">
+            <%= @note.title %>
+          </div>
+          <div class="show-top-tags">
+            <div class="show-top-tag">
+              <% @note.tags.each do |tag| %>
+                <i class="fas fa-tags tag-show-note-img"></i>
+                <%= link_to "#{tag.name}", "/tag/#{tag.id}/notes", class: "tag" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="show-top-communication">
+          <div class="show-top-communication-left">
+              <% if user_signed_in? %>
+                <% if current_user.favorites.find_by(note_id: @note.id) %>
+                  <%= link_to note_favorite_path(@note), method: :delete, class: "unfavorite", id: "unfavorite" do %>
+                    <div class="show-top-nolike-btn">
+                      <span><i class="fas fa-book"></i>LIKED</span>
+                      <%= @note.favorites.count %>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <%= link_to note_favorites_path(@note), method: :post, class: "favorite", id: "favorite" do %>
+                    <div class="show-top-like-btn">
+                      <span><i class="fas fa-book"></i>LIKE</span>
+                      <%= @note.favorites.count %>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% end %>
+          </div>
+          <div class="show-top-communication-right">
+            <%= link_to  "https://twitter.com/intent/tweet?text=タイトル:#{@note.title}#{request.url}", title: 'Twitter', target: '_blank', class: "show-top-twitter-btn" do %>
+              <i class="fab fa-twitter show-top-twitter"></i>Twitter
+            <% end %>
+            <a href="http://line.me/R/msg/text/?{message}" class="show-top-line-btn"><i class="fab fa-line top-line show-top-line"></i>LINE</a>
+          </div>
+        </div>
+        <div class="show-top-communication-after">
+          <%= link_to 'LIKEしたユーザーを見る', "/notes/favorite/#{@note.id}" %>
+        </div>
+      </div>
+      <div class="show-body">
+        <%# <p><%= markdown(@note.text).html_safe ></p> %>
+      </div>
+      <div class="show-body-note-image">
+        <%= image_tag @note.image, class:"show-note-image", alt: "投稿した画像" if @note.image.attached? %>
+      </div>
+      <div class="show-body-plans">
+        <h3>Action Plan</h3>
+        <%# <p class="show-body-plan"><%= markdown(@note.plan).html_safe ></p> %>
+      </div>
+      <div class="show-bottom">
+        <div class="show-bottom-first">
+          <%= link_to  "https://twitter.com/intent/tweet?text=タイトル:#{@note.title}#{request.url}", title: 'Twitter', target: '_blank', class: "show-share-twitter" do %>
+            <i class="fab fa-twitter share-twitter"></i>
+          <% end %>
+          <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><i class="fab fa-facebook share-facebook"></i></a>
+          <a href="http://line.me/R/msg/text/?{message}"><i class="fab fa-line share-line"></i></a>
+        </div>
+      </div>
+      <div class="comment-area">
+        <div class="comment-content">
+          <% @comments.each do |comment| %>
+            <div class="comment-btn-box">
+              <div class="comment-btn-box-left">
+              <% if user_signed_in? %>
+                <%= link_to user_path(comment.user.id) do %>
+                  <% if comment.user.intro.present? %>
+                    <%= image_tag comment.user.intro.image, class: "show-top-icon", alt: "ユーザーアイコン" %>
+                  <% else %>
+                    <img src="/assets/default.png" class="show-top-icon" alt="ユーザーアイコン">
+                  <% end %>
+                <% end %>
+                <%= link_to comment.user.nickname, user_path(comment.user.id), class: "show-top-username" %>
+              <% end %>
+              </div>
+              <div class="comment-btn-box-right">
+                <%= comment.created_at.strftime('%Y-%m-%d %H:%M')%>
+                <% if user_signed_in? %>
+                  <div class="comment-drop">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-h"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">このコメントを報告</a>
+                      <% if current_user.id == comment.user_id %>
+                        <div class="dropdown-divider"></div>
+                        <%= link_to '削除する', comment_path(comment.id), method: :delete, class: "dropdown-item" %>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="commnet-message">
+              <p><%= comment.text %></p>
+            </div>
+            <div class="commnets-message-image">
+              <p><%= image_tag comment.image, class: "comment-message-image", alt: "コメント画像" if comment.image.attached? %></p>
+            </div>
+          <% end %>
+          <div class="comment-bottom-border-box">
+            <div class="comment-bottom-border"></div>
+          </div>
+        </div>
+        <% if user_signed_in? %>
+          <div class="commnet-info">
+            <%= link_to user_path(@note.user.id) do %>
+              <% if current_user.intro.present? %>
+                <%= image_tag current_user.intro.image, class: "user-icon", alt: "ユーザーアイコン" %>
+              <% else %>
+                <img src="/assets/default.png" class="user-icon" alt="ユーザーアイコン">
+              <% end %>
+            <% end %>
+            <span class="commnet-new">投稿する</span>
+          </div>
+          <div class="comment-input">
+            <div class="comment-menu">
+            </div>
+            <%= form_with(model: [@note, @comment], local: true) do |f| %>
+              <div class="comment-form">
+                <%= f.text_area :text, placeholder: "テキストを入力", class: "comment-textarea" %>
+              </div>
+              <div class="comment-opt">
+                <div class="comment-opt-image">
+                  <span class="comment-image">
+                    <i class="far fa-image comment-img-icon"></i>
+                    画像を選択 <%= f.file_field :image,class: "comment-img-input" %>
+                  </span>
+                </div>
+                <%= f.submit "投稿", class: "comment-submit", id: "comment_submit" %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

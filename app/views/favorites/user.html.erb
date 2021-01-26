@@ -1,0 +1,78 @@
+<div class="wrapper">
+  <div class="session-header">
+    <% if user_signed_in? %>
+      <%= render 'shared/note_header' %>
+    <% else %>
+      <div class="show-header">  
+        <div class="upper-header">
+          <div class="upper-left">
+            <%= link_to "Plans App", root_path %>
+          </div>
+          <div class="upper-right">
+            <%= link_to "ユーザー登録", new_user_registration_path, class: "upper-regist" %>
+            <%= link_to "ログイン", new_user_session_path, class: "upper-session" %>
+            <%= link_to 'ゲストログイン（閲覧用）',  users_guest_sigin_in_path, method: :post, class: "guest-session" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="detail-page-wrapper">
+    <div class="favpage-main">
+      <div class="top-left-content">
+        <div class="favpage-whose-list-nav">
+          <%= link_to user_path(@user.id), class: 'upper-usericon' do %>
+            <% if @user.intro.present? %>
+              <%= image_tag @user.intro.image, class: "favpage-icon", alt: "ユーザーアイコン" %>
+            <% else %>
+              <img src="/assets/default.png" class="favpage-icon " alt="ユーザーアイコン" >
+            <% end %>
+          <% end %>
+          <p><b><%= link_to @user.nickname, user_path(@user.id), class: "whoes-list-name-link" %></b>'s LIKES</p>
+        </div>
+        <div class="item-pagenate">
+          <% @user.favorited_notes.order('created_at DESC').each do |note| %>
+            <li class="item-list">
+              <div class="favpage-user-info">
+                <%= link_to user_path(note.user.id) do %>
+                  <% if note.user.intro.present? %>
+                    <%= image_tag note.user.intro.image, class: "user-icon", alt: "ユーザーアイコン" %>
+                  <% else %>
+                    <img src="/assets/default.png" class="user-icon" alt="ユーザーアイコン">
+                  <% end %>
+                <% end %>
+                <div class="favpage-user-info-detail">
+                  <%= link_to note.user.nickname, user_path(note.user.id), class: "user-id" %>
+                  <p>が<%= note.created_at.to_s(:datetime_jp) %>に投稿</p>
+                </div>
+              </div>
+              <div class="list-main-content">
+                <%= link_to note_path(note.id), class: "favpage_note_show" do %>
+                  <div class="list-title-content">
+                    <p><%= note.title %></p>
+                  </div>
+                <% end %>
+                <div class="list-detail-tag-content">
+                  <div class="list-tag-content">
+                    <% note.tags.each do |tag| %>
+                      <i class="fas fa-tags favpage-tag-img"></i>
+                      <%= link_to "#{tag.name}", "/tag/#{tag.id}/notes", class: "tag" %>
+                    <% end %>
+                  </div>
+                  <div class="list-detail-content">
+                    <i class="fas fa-book favpage-like-btn"></i><span><%= note.favorites.count %></span>
+                    <i class="far fa-comment favpage-comment-btn"></i><span><%= note.comments.count %></span>
+                  </div>
+                </div>
+              </div>
+            </li>
+          <% end %>
+          <div class="detail-page-more-note">
+            <%= paginate @favorite_notes %>
+          </div>
+        </div>
+      </div>
+        <%= render 'shared/detail' %>
+    </div>
+  </div>
+</div>

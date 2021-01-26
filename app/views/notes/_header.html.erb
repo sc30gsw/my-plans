@@ -1,0 +1,34 @@
+<% if user_signed_in? %>
+    <%= render 'shared/note_header' %>
+<% else %>
+  <header>  
+    <div class="upper-header">
+      <div class="upper-left">
+        <%= render 'shared/session_header' %>
+      </div>
+      <div class="upper-right">
+        <%= link_to "ユーザー登録", new_user_registration_path, class: "upper-regist" %>
+        <%= link_to "ログイン", new_user_session_path, class: "upper-session" %>
+         <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "guest-session" %>
+      </div>
+    </div>
+    <div class="lower-header">
+      <div class="lower-left">
+        <h2 class="catch-copy">Tell me your plan.</h2>
+        <p class="explain">Plans Appは本や論文に関する知識を記録・共有するためのサービスです。<br>
+        あなたのアクションプランを共有しましょう！</p>
+      </div>
+      <div class="lower-right">
+        <div class="sns-session">
+          <p class="sns-login">SNSで登録＆ログイン</p>
+          <%= link_to user_twitter_omniauth_authorize_path, method: :post, class: "twitter-session" do %>
+            <i class="fab fa-twitter twitter-icon"></i>Twitter
+          <% end %>
+          <%= link_to user_facebook_omniauth_authorize_path, method: :post, class: "facebook-session" do %>
+            <i class="fab fa-facebook-square facebook-icon"></i>Facebook
+          <% end %>
+        </div>
+        </div>
+    </div>
+  </header>
+<% end %>

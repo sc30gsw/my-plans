@@ -1,0 +1,42 @@
+<div class="note-user">
+<% if user_signed_in? %>
+  <%= link_to user_path(notes.user.id) do %>
+    <% if notes.user.intro.present? %>
+      <div class="session-usericon">
+        <%= image_tag notes.user.intro.image, class: "user-icon", alt: "ユーザーアイコン" %>
+      </div> 
+    <% else %>
+      <div class="session-usericon">
+        <img src="/assets/default.png" class="user-icon" alt="ユーザーアイコン">
+      </div>
+    <% end %>
+  <% end %>
+  <%= link_to notes.user.nickname, user_path(notes.user.id), class: "user-id" %>
+  <div class="created-at">
+    が<%= notes.created_at.to_s(:datetime_jp) %>に投稿
+  </div>
+<% end %>
+</div>
+<%= link_to note_path(notes.id), class: "note_show_links" do %>
+  <div class="note-title">
+    <h3><%= notes.title %></h3>
+  </div>
+  <% end %>
+  <% notes.tags.each do |tag| %>
+    <div class="note-tag">
+      <i class="fas fa-tags tag-img"></i>
+      <%= link_to "#{tag.name}", "/tag/#{tag.id}/notes", class: "tag" %>
+    </div>
+  <% end %>
+<div class="note-options">
+  <div class="note-opt">
+    <div class="note-option-icon">
+      <div class="favorite">
+        <i class="fas fa-book like-btn"></i><span class="favorite-count"><%= notes.favorites.count %></span>
+      </div>
+      <div class="comment-num">
+        <i class="far fa-comment comment-btn"></i><span class="comment-count"><%= notes.comments.count %></span>
+      </div>
+    </div>
+  </div>
+</div>

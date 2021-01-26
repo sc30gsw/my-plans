@@ -1,0 +1,41 @@
+<div class="wrapper">
+  <%= render 'shared/note_header' %>
+  <div class="note-container">
+    <div class="new-content">
+      <%= form_with(model: @note, class: 'note_form', local: true) do |f| %>
+        <div class="caption-area">
+          <div class="title-box">
+            <%= f.text_field :title, class: "input-title", placeholder: "タイトル", maxlength: 50, autofocus: true %>
+          </div>
+          <div class="note-new-opt">
+            <i class="far fa-image note-img"><%= f.file_field :image, class: "input-note-image" %></i>
+          </div>
+        </div>
+        <div class="note-editor">
+          <div class="note-area-left">
+            <%= f.text_area :text, class: "input-text", placeholder: "テキストを入力" %>
+            <%= f.text_area :plan, class: "input-plan", placeholder: "アクションプランを共有しよう" %>
+          </div>
+          <div class="note-area-right">
+            <div class="note-preview">
+              <textarea type="text" calss="input-preview" placeholder="プレビュー機能実装予定" ></textarea>
+            </div>
+            <div class="note-submit">
+              <%= f.submit 'Plansを投稿', class: "plan-btn" %>
+              <div class="plan-drop">
+                <a class="nav-link" href="#" id="navbarPlanDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-caret-up"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#"><i class="fas fa-clipboard save"></i>下書き保存</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#"><i class="fas fa-upload upload"></i>Plansを投稿</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

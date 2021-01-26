@@ -1,0 +1,90 @@
+<div class="wrapper">
+  <div class="session-header">
+    <%= render 'shared/session_header' %>
+      <div class="session-right">
+        <% if user_signed_in? %>
+          <%= render 'shared/header_links' %>
+        <% end %>
+        <%= link_to user_path(current_user.id), class: 'upper-usericon' do %>
+          <% if current_user.intro.present? %>
+            <div class="session-usericon">
+              <%= image_tag current_user.intro.image, class: "index-icon", alt: "ユーザーアイコン" %>
+              </div> 
+            <% else %> 
+            <div class="session-usericon">
+              <img src="/assets/default.png" class="index-icon" alt="ユーザーアイコン" >
+            </div>
+          <% end %> 
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="notification-wrapper">
+  <div class="notification-main">
+    <div class="notification-index">
+      <% if @notifications.exists? %>
+        <div class="notice-list-navi">
+          <p>通知一覧</p>
+        </div>
+        <%= render @notifications %>
+        <div class="notice-delete">
+          <%= link_to "通知削除", notification_path(@notifications), method: :delete ,class: "fas fa-trash" %>
+        </div>
+      <% else %>
+        <p class="not-notice">通知はありません</p>
+      <% end %>
+    </div>
+    <div class="top-right-norificate">
+      <div class="top-user-card">
+        <div class="detail-page-user-card">
+        <%= link_to user_path(current_user.id), class: 'upper-usericon' do %>
+          <% if current_user.intro.present? %>
+            <%= image_tag current_user.intro.image, class: "detail-user-page-icon", alt: "ユーザーアイコン" %>
+          <% else %>
+            <img src="/assets/default.png" class="detail-user-page-icon " alt="ユーザーアイコン" >
+          <% end %>
+        <% end %>
+      </div>
+      <div class="detail-page-user-name">
+        <% if current_user.intro.present? %>
+          <div class="detail-user-name">
+            <p class="detail-user-firstname"><%= current_user.intro.first_name%></p>
+            <p class="detail-user-lastname"><%= current_user.intro.last_name%></p>
+          </div>
+        <% else %>
+          <div class="detail-user-nickname">
+            <%= current_user.nickname %>
+          </div>
+        <% end %>
+      </div>
+      <div class="user-status">
+        <div class="user-status-top">
+          <div class="user-status-note">
+            <%= link_to '投稿', user_path(current_user.id), class: "status"  %>
+            <span><%= current_user.note.count %></span>
+          </div>
+          <div class="user-status-fav">
+            <%= link_to "いいね", "/favorites/user/#{current_user.id}", class: "status" %>
+            <span><%= current_user.favorites.count %></span>
+          </div>
+          <div class="user-status-comment">
+            <%= link_to "コメント", "/comments/user/#{current_user.id}", class: "status" %>
+            <span><%= current_user.comments.count %></span>
+          </div>
+        </div>
+        <div class="user-status-bottom">
+          <div class="user-status-follow">
+            <%= link_to 'フォロー', "/followings/user/#{current_user.id}", class: "status" %>
+            <span><%= current_user.followings.count%></span>
+          </div>
+          <div class="user-status-follower">
+            <%= link_to 'フォロワー', "/followers/user/#{current_user.id}", class: "status" %>
+            <span><%= current_user.followers.count %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</div>

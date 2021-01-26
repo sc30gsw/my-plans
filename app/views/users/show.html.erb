@@ -3,7 +3,7 @@
     <%= render 'shared/session_header' %>
       <div class="session-right">
         <% if user_signed_in? %>
-          <%= render 'shared/header_links' %> 
+          <%= render 'shared/header_links' %>
         <% end %>
         <%= link_to user_path(current_user.id), class: 'upper-usericon' do %>
           <% if current_user.intro.present? %>
@@ -107,23 +107,23 @@
         <div class="mypage-count">
           <div class="mypage-notes-count">
             <%= link_to '投稿', user_path(@user.id), class: "detai" %>
-             <%# <p class="count"><%= @user.notes.count ></p> %>
+             <p class="count"><%= @user.note.count %></p>
           </div>
           <div class="mypage-favorite-count">
             <%= link_to 'いいね', "/favorites/user/#{@user.id}", class: "detail" %>
-            <%# <p class="count"><%= @user.favorites.count ></p> %>
+            <p class="count"><%= @user.favorites.count %></p>
           </div>
            <div class="mypage-favorite-count">
             <%= link_to  'コメント', "/comments/user/#{@user.id}", class: "detail" %>
-            <%# <p class="count"><%= @user.comments.count ></p> %>
+            <p class="count"><%= @user.comments.count %></p>
           </div>
           <div class="mypage-follower-count">
             <%= link_to 'フォロー', "/followings/user/#{@user.id}", class: "detail" %>
-            <%# <p class="count"><%= @user.followings.count></p> %>
+            <p class="count"><%= @user.followings.count%></p>
           </div>
           <div class="mypage-follower-count">
             <%= link_to 'フォロワー', "/followers/user/#{@user.id}", class: "detail" %>
-            <%# <p class="count"><%= @user.followers.count ></p> %>
+            <p class="count"><%= @user.followers.count %></p>
           </div>
         </div>
         <div class="follow-btn">
@@ -162,17 +162,17 @@
             <span class="activity">Activity</span>
               <div class="weekly-count">
                 <% 7.times do |x|%>
-                  <%# <% if @user.notes.exists?(['created_at LIKE ?', "%#{(Date.today - 6 + x)}%"]%> 
+                  <% if @user.note.exists?(['created_at LIKE ?', "%#{(Date.today - 6 + x)}%"])%>
                     <div class='weekly-count-day'>
                       <span><%= (Date.today - 6 + x).strftime('%a') %></span>
                       <span><%= (Date.today - 6 + x).strftime('%e') %></span>
                     </div>
-                  <%# <% else %> 
+                  <% else %>
                     <div class='weekly-count-day-off'>
                       <span><%= (Date.today - 6 + x).strftime('%a') %></span>
                       <span><%= (Date.today - 6 + x).strftime('%e') %></span>
                     </div>
-                  <%# <% end%> 
+                  <% end%>
                 <% end %>
               </div>
               <span class="status">1 Week</span>
@@ -183,11 +183,11 @@
                   </div>
                   <div class="status-count-block">
                     <span>LIKED</span>
-                    <%# <%= @favorited_notes.count %> 
+                    <%= @favorited_notes.count %>
                   </div>
                   <div class="status-count-block">
                     <span>COMMENTED</span>
-                    <%# <%= @commented_notes.count %> 
+                    <%= @commented_notes.count %>
                   </div>
                 </div>
           </div>
@@ -195,34 +195,34 @@
         <div class="mypage-notes">
           <h6 class="mypage-notes-title"><i class="fas fa-square mypage-squere"></i>全ての投稿</h6>
           <div class="my-plans">
-            <%# <% @notes.each do |note| %> 
+            <% @notes.each do |note| %>
               <div class="mypage-note-tag">
-                <%# <% note.tags.each do |tag| %> 
+                <% note.tags.each do |tag| %>
                   <i class="fas fa-tags mypage-tag-img"></i>
                   <%= link_to "##{tag.name}", "/tag/#{tag.id}/notes", class: "tag" %>
-                <%# <% end %> 
+                <% end %>
               </div>
-              <%# <%= link_to note_path(note.id), class: "mypage_note_show" do %> 
+              <%= link_to note_path(note.id), class: "mypage_note_show" do %>
                 <div class="mypage-note-title">
-                  <%# <h3><%= note.title ></h3> %>
+                  <h3><%= note.title %></h3>
                 </div>
-              <%# <% end %> 
+              <% end %>
               <div class="mypage-note-opt">
                 <div class="mypage-detail">
                   <div class="mypage-fav-comment">
-                    <%# <i class="fas fa-book mypage-like-btn"></i><span><%= note.favorites.count ></span> %>
-                    <%# <i class="far fa-comment mypage-comment-btn"></i><span><%= note.comments.count ></span> %>
+                    <i class="fas fa-book mypage-like-btn"></i><span><%= note.favorites.count %></span>
+                    <i class="far fa-comment mypage-comment-btn"></i><span><%= note.comments.count %></span>
                   </div>
                   <div class="mypage-created">
-                    <%# <div class="mypage-time"><%= note.created_at.strftime('%Y/%m/%d') ></div> %>
+                    <div class="mypage-time"><%= note.created_at.strftime('%Y/%m/%d') %></div>
                   </div>
                 </div>
               </div>
-            <%# <% end %> 
+            <% end %>
           </div>
         </div>
         <div class="mypage-nation">
-          <%# <%= paginate @notes %> 
+          <%= paginate @notes %>
         </div>
       </div>
     </div>
