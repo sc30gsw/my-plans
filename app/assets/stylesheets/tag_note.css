@@ -1,0 +1,86 @@
+.tag-note-wrapper {
+  width: 100vw;
+  height: 100vh;
+}
+
+.tag-note-main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.tag-notes {
+  margin: 30px 0;
+}
+
+.tag-note-title {
+  font-weight: bold;
+}
+
+.tag-notes-index {
+  list-style: none;
+  background-color: #f0efef;
+  padding: 10px 20px;
+  border-bottom: 1px solid lightgray;
+}
+
+.tag-notes-user {
+  display: flex;
+}
+
+.tag-page-user-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 70px;
+}
+
+.tag-page-user-icon:hover {
+  opacity: 0.8;
+}
+
+.tag-note-user-nickname {
+  margin-left: 5px;
+}
+
+.tag-page-user-link {
+  color: black;
+}
+
+.tag-page-user-link:hover {
+  color: black;
+}
+
+.tag-note-title {
+  margin-top: 10px;
+  margin-left: 3px;
+}
+
+.tag-note-link {
+  color: black;
+  font-size: 20px;
+}
+
+.tag-note-link:hover {
+  color: black;
+}
+
+.tag-notes-options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tagpage-notes-img {
+  color: rgb(121, 121, 121);
+}
+
+.tag-notes-taglink {
+  color: rgb(121, 121, 121);
+}
+
+.tag-notes-taglink:hover {
+  color: rgb(121, 121, 121);
+}
+
+.tag-notes-page-opt {
+  display: flex;
+}

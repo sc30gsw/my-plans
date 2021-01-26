@@ -1,0 +1,137 @@
+.chat-wrapper {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 120px;
+  box-sizing: border-box;
+}
+
+.room-title-text {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.rooms-title {
+  font-weight: bold;
+}
+
+.room-user-info {
+  display: flex;
+  justify-content: space-around;
+}
+
+.chat-top-icon {
+  height: 60px;
+  width: 60px;
+  border-radius: 70px;
+}
+
+.chat-top-icon:hover {
+  opacity: 0.8;
+}
+
+.rooms-user-link {
+  color: black;
+  font-size: 15px;
+}
+
+.rooms-user-link:hover {
+  color: black;
+}
+
+hr {
+  margin-bottom: 5px;
+}
+
+.room-destroy {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+.chats {
+  margin: 10px 0;
+  overflow: scroll;
+}
+
+.chat-box {
+  display: flex;
+  justify-content: space-between;
+  font-size: 17px;
+  margin: 0 auto 15px;
+  width: 90%;
+  border: 1px solid lightgray;
+}
+
+.chat-face {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.chat-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 70px;
+}
+
+.chat-icon:hover {
+  opacity: 0.8;
+}
+
+.chat-nickname-link {
+  color: black;
+}
+
+.chat-nickname-link:hover {
+  color: black;
+}
+
+.chat-messages {
+  display: flex;
+  align-items: center;
+  word-break: break-all;
+  font-size: 13px;
+}
+
+.chat-messages p {
+  word-break: break-all;
+}
+
+.chat-time {
+  margin-right: 5px;
+  font-size: 10px;
+}
+
+.chat-footer {
+  width: 100%;
+  padding: 30px 0;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  background-color: #3e3e3e;
+}
+
+.form-chat-field {
+  padding: 3px 7px;
+  border-radius: 3px;
+  border: 1px solid #3e3e3e;
+}
+
+.chat-submit {
+  background-color: rgb(56, 135, 224);
+  border: 1px solid rgb(56, 135, 224);
+  border-radius: 3px;
+  padding: 3px 7px;
+  color: white;
+}
+
+@media (max-width: 599px) {
+  .form-chat-field {
+    width: 80%;
+  }
+}
