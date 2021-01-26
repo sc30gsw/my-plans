@@ -49,7 +49,7 @@
               </div>
               <div class="likes-user-opt">
                 <div class="likes-user-icons">
-                  <i class="fas fa-clipboard"></i><span><%= user.notes.count %></span>
+                  <i class="fas fa-clipboard"></i><span><%= user.note.count %></span>
                   <i class="fas fa-book myitem-like-btn"></i><span><%= user.favorites.count %></span>
                   <i class="far fa-comment myitem-comment-btn"></i><span><%= user.comments.count %></span>
                 </div>
@@ -88,7 +88,7 @@
             <div class="user-status-top">
               <div class="user-status-note">
                 <%= link_to '投稿', user_path(@note.user.id), class: "status" %>
-                <span><%= @note.user.notes.count %></span>
+                <span><%= @note.user.note.count %></span>
                   </div>
               <div class="user-status-fav">
                 <%= link_to "いいね", "/favorites/user/#{@note.user.id}", class: "status" %>
@@ -115,7 +115,7 @@
           <div class="item-list-navi">
             <i class="fas fa-square item-list-squere"></i><b><%= @note.user.nickname %></b>'s NOTES
           </div>
-          <% @note.user.notes.each do |note| %>
+          <% @note.user.note.each do |note| %>
             <li class="my-item-list">
               <div class="my-item-list-content">
                 <div class="my-item-list-tag">
