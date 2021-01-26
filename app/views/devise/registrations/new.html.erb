@@ -10,12 +10,12 @@
 
   <div class="registration">
     <div class="regist-left">
-      <%# <%= link_to user_twitter_omniauth_authorize_path, method: :post, class: "twitter-regist" do %> 
+      <%= link_to user_twitter_omniauth_authorize_path, method: :post, class: "twitter-regist" do %> 
         <i class="fab fa-twitter regist-icon"></i>Twitterアカウントで登録
-      <%# <% end %> 
-      <%# <%= link_to user_facebook_omniauth_authorize_path, method: :post, class: "facebook-regist" do %> 
+       <% end %> 
+       <%= link_to user_facebook_omniauth_authorize_path, method: :post, class: "facebook-regist" do %> 
         <i class="fab fa-facebook-square regist-icon"></i>Facebookアカウントで登録
-      <%# <% end %> 
+      <% end %> 
       <p>Plans Appが許可なくTwitter・Facebookに投稿することはありません。</p>
       <p>もしPlans Appのアカウントを持っている場合は<%= link_to 'ログイン', new_user_session_path, class: "regist_session" %>をクリック</p>
     </div>
