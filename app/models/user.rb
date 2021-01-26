@@ -28,4 +28,10 @@ class User < ApplicationRecord
     { user: user, sns: sns }
   end
 
+  def self.guest
+    find_or_create_by!(nickname: 'guest', email: 'guest@example.com') do |user|
+      user.password = 'guest111'
+    end
+  end
+
 end
