@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :favorites, dependent: :destroy
   has_many :relationships
+  has_many :memos
 
   # コメントした投稿を取得するための記述
   has_many :commented_notes, through: :comments, source: :note

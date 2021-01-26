@@ -11,6 +11,8 @@ require("./feed")
 require("./user_rule")
 require("./user_icon")
 require("./tag")
+require("./drag")
+require("./checked")
 
 
 
