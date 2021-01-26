@@ -36,9 +36,6 @@ Rails.application.routes.draw do
   # タグがつけられた投稿一覧のルーティング
   get 'tag/:id/notes', to: 'tags#note'
 
-  # 新着順(投稿)を取得
-  get 'notes/order_index', to: 'notes#order_index'
-
   # いいねした投稿を表示するためのルーティング
   get 'notes/favorite/:id', to: 'notes#favorite'
   

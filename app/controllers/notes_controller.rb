@@ -7,10 +7,6 @@ class NotesController < ApplicationController
     @notes = Kaminari.paginate_array(@notes).page(params[:page]).per(6)
   end
 
-  def order_index
-    @notes = Note.includes(:user).page(params[:page]).per(6).order('created_at DESC')
-  end
-
   def new
     @note = NoteTagRelation.new
   end
