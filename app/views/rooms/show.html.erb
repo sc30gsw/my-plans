@@ -1,0 +1,92 @@
+<div class="chat-wrapper">
+  <div class="session-header">
+    <% if user_signed_in? %>
+      <%= render 'shared/note_header' %>
+    <% else %>
+      <div class="show-header">  
+        <div class="upper-header">
+          <div class="upper-left">
+            <%= link_to "Plans App", root_path %>
+          </div>
+          <div class="upper-right">
+            <%= link_to "ユーザー登録", new_user_registration_path, class: "upper-regist" %>
+            <%= link_to "ログイン", new_user_session_path, class: "upper-session" %>
+            <%= link_to 'ゲストログイン（閲覧用）',  users_guest_sigin_in_path, method: :post, class: "guest-session" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="room-title-text">
+    <h4 class="rooms-title">チャットルーム</h4>
+  </div>
+  <div class="room-user-info">
+    <% @entries.each do |e| %>
+      <div class="room-user-detail">
+        <div class="room-user-icon">
+          <%= link_to user_path(e.user.id), class: 'upper-usericon' do %>
+            <% if e.user.intro.present? %>
+              <div class="session-usericon">
+                <%= image_tag e.user.intro.image, class: "chat-top-icon", alt: "ユーザーアイコン" %>
+              </div> 
+            <% else %> 
+              <div class="session-usericon">
+                <img src="/assets/default.png" class="chat-top-icon" alt="ユーザーアイコン" >
+              </div>
+            <% end %> 
+          <% end %>
+        </div>
+        <div class="room-user-nickname">
+          <a class="rooms-user-link" href="/users/<%= e.user.id %>">
+            <b><%= e.user.nickname %></b>さん
+          </a>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <hr>
+  <div class="room-destroy">
+    <%= link_to room_path(@room.id), method: :delete, class: "room-delete-link" do %>
+      <i class="fas fa-trash-alt room-destroy-icon"></i>チャットを終了する
+    <% end %>
+  </div>
+  <div class="chats">
+    <div class="chat">
+      <% if @messages.present? %>
+        <% @messages.each do |m| %>
+          <div class="chat-box">
+            <div class="chat-face">
+              <%= link_to user_path(m.user.id), class: 'upper-usericon' do %>
+                 <% if m.user.intro.present? %>
+                  <div class="session-usericon">
+                    <%= image_tag m.user.intro.image, class: "chat-icon", alt: "ユーザーアイコン" %>
+                  </div> 
+                <% else %> 
+                  <div class="session-usericon">
+                    <img src="/assets/default.png" class="chat-icon" alt="ユーザーアイコン" >
+                  </div>
+                <% end %> 
+              <% end %>
+              <%= link_to m.user.nickname, user_path(m.user.id), class:"chat-nickname-link" %>
+            </div>
+            <div class="chat-messages"> 
+              <p class="chat-text"><%= m.text %></p>
+            </div>
+            <div class="chat-time">
+              <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="chat-footer">
+    <div class="chat-posts">
+      <%= form_with model: @message, url: messages_path, local: true do |f| %>
+         <%= f.text_field :text, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-chat-field" %>
+          <%= f.hidden_field :room_id, value: @room.id %>
+            <%= f.submit "投稿",class: 'chat-submit'%>
+      <% end %>
+    </div>
+  </div>
+</div>
