@@ -3,8 +3,8 @@ class NotesController < ApplicationController
   before_action :set_note, only: %i[show edit update destroy favorite]
 
   def index
-    # @notes = Note.includes(:user).sort { |a, b| b.favorited_users.count <=> a.favorited_users.count }
-    # @notes = Kaminari.paginate_array(@notes).page(params[:page]).per(6)
+    @notes = Note.includes(:user).sort { |a, b| b.favorited_users.count <=> a.favorited_users.count }
+    @notes = Kaminari.paginate_array(@notes).page(params[:page]).per(6)
   end
 
   def order_index
@@ -26,8 +26,8 @@ class NotesController < ApplicationController
   end
 
   def show
-    # @comment = Comment.new
-    # @comments = @note.comments.includes(:user).order('created_at DESC')
+    @comment = Comment.new
+    @comments = @note.comments.includes(:user).order('created_at DESC')
   end
 
   def edit

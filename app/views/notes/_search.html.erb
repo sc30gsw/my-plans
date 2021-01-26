@@ -1,0 +1,18 @@
+<div class="search-form">
+  <%= form_with(url: note_search_notes_path, local: true, method: :get) do |f| %>
+    <%= f.text_field :keyword, placeholder: "キーワードを入力", class: "search-input" %>
+    <%= f.submit "検索" , class: "search-btn"%>
+  <% end %>
+</div>
+<div class="notes">
+  <div class="note-order">
+    <div class="feed">
+      <p class="feed-title"><b>記事フィード</b></p>
+      <%= link_to root_path, class: "trend" do %>
+        <i class="fas fa-fire fire-icon"></i>トレンド
+      <% end %>
+      <%= link_to notes_order_index_path, class: "asc" do %>
+        <i class="fas fa-sort-numeric-down asc-icon"></i>新着順
+      <% end %>
+    </div>
+  <div>

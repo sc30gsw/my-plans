@@ -1,0 +1,21 @@
+<div class="wrqpper">
+  <%= render 'header' %>
+  <main>
+    <%= render 'search' %>
+    <div class="notes">
+      <div class="notes-trend">
+        <p class="note-fire"><i class="fas fa-sort-numeric-down asc-icon-notes"></i>新着順</p>
+          <%= render partial: 'notes', collection: @notes %>
+        <div class="more-note">
+          <%= paginate @notes %>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+      <div class="footer">
+        <%= render 'shared/footer' %>
+      </div>
+  </footer>
+</div>
+ 

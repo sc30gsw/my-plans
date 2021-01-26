@@ -1,0 +1,6 @@
+<%= form_with(model: @relationship, url: relationship_path(current_user.id), method: :delete, local: true) do |f| %>
+  <div class="unfollow">
+    <%= f.hidden_field :follow_id, value: @user.id %>
+    <%= f.submit 'フォロー', class: 'btn-unfollow' %>
+  </div>  
+<% end %>

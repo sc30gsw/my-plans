@@ -1,0 +1,171 @@
+<div class="wrapper">
+<div class="session-header">
+  <%= render 'shared/session_header' %>
+    <div class="session-right">
+      <% if user_signed_in? %>
+      <%= render 'shared/header_links' %>
+      <% end %>
+      <%= link_to user_path(current_user.id), class: 'upper-usericon' do %>
+        <% if current_user.intro.present? %>
+          <div class="session-usericon">
+            <%= image_tag current_user.intro.image, class: "index-icon", alt: "ユーザーアイコン" %>
+            </div> 
+          <% else %> 
+          <div class="session-usericon">
+            <img src="/assets/default.png" class="index-icon" alt="ユーザーアイコン" >
+          </div>
+        <% end %> 
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="favpage-wrapper">
+  <div class="favpage-main">
+    <div class="favpage-left">
+     <p class="favpage-title"><%= current_user.nickname %></p>
+     <% current_user.favorited_notes.each do |note| %>
+      <%= link_to user_path(note.user.id) do %>
+        <% if note.user.intro.present? %>
+          <div class="session-usericon">
+            <%= image_tag note.user.intro.image, class: "user-icon", alt: "ユーザーアイコン" %>
+          </div> 
+        <% else %>
+          <div class="session-usericon">
+            <img src="/assets/default.png" class="user-icon" alt="ユーザーアイコン">
+          </div>
+        <% end %>
+      <% end %>
+      <%= link_to note.user.nickname, user_path(note.user.id), class: "user-id" %>
+      <div class="favpage-note-tag">
+        <% note.tags.each do |tag| %>
+          <i class="fas fa-tags favpage-tag-img"></i>
+          <%= link_to "#{tag.name}", "/tag/#{tag.id}/notes", class: "tag" %>
+        <% end %>
+      </div>
+      <%= link_to note_path(note.id), class: "favpage_note_show" do %>
+        <div class="favpage-note-title">
+          <h3><%= note.title %></h3>
+        </div>
+      <% end %>
+      <div class="favpage-note-opt">
+        <div class="favorite-page-detail">
+          <div class="favorite-page-fav-comment">
+            <i class="far fa-heart favpage-like-btn"></i>
+            <i class="far fa-comment favpage-comment-btn"></i>
+          </div>
+          <div class="favpage-created">
+            <div class="favpage-time"><%= note.created_at.strftime('%Y/%m/%d') %></div>
+          </div>
+         </div>
+      </div>
+    <% end %>
+   </div>
+    <div class="favpage-right">
+      <div class="favpage-user-details">
+        <% if current_user.intro.present? %>
+          <div class="favpage-usericon">
+            <%= image_tag current_user.intro.image, class: "index-icon", alt: "ユーザーアイコン" %>
+          </div>
+        <% else %>
+          <div class="favpage-usericon">
+            <img src="/assets/default.png" class="intro-icon " alt="ユーザーアイコン" >
+          </div>
+        <% end %>
+      
+        <% if current_user.intro.present? %>
+          <div class="favpage-name">
+            <div class="favpage-first-name">
+              <%= current_user.intro.first_name %>
+            </div>
+            <div class="favpage-last-name">
+              <%= current_user.intro.last_name %>
+            </div>
+          </div>
+          <div class="favpage-up-username">
+            <div class="favpage-up-nickname">
+              <%= current_user.nickname%>
+            </div>
+          </div>
+        <% else %>
+          <div class="favpage-username">
+            <div class="favpage-nickname">
+              <%= current_user.nickname%>
+            </div>
+          </div>
+        <% end %>
+
+        <% if current_user.intro.present? %>
+          <div class="favpage-web">
+          <a href="#"><i class="fas fa-clipboard-list"></i><%= current_user.intro.website %></a>
+          </div>
+        <% end %>
+
+        <% if current_user.intro.present? %>
+          <div class="favpage-introduce">
+            <div class="introduce">
+              <%= current_user.intro.profile %>
+            </div>
+          </div>
+        <% end %>
+        <div class="favpage-count">
+          <div class="favpage-notes-count">
+            <%= link_to '投稿', user_path(current_user.id), class: "detai" %>
+            <p class="count"><%= current_user.notes.count %></p>
+          </div>
+          <div class="favpage-favorite-count">
+            <%= link_to  'いいね' favorites_users_path, class: "detail"  %>
+            <p class="count"><%= current_user.favorites.count %></p>
+          </div>
+          <div class="favpage-follower-count">
+            <a href="#" class="detail">フォロー</a>
+            <p class="count">0</p>
+          </div>
+          <div class="favpage-follower-count">
+            <a href="#" class="detail">フォロワー</a>
+            <p class="count">0</p>
+          </div>
+        </div>
+      </div>
+      <div class="favpage-notes">
+        <h6 class="favpage-notes-title"><i class="fas fa-square favpage-squere"></i>全ての投稿</h6>
+        <div class="favpage-my-plans">
+          <% current_user.notes.each do |note| %>
+            <div class="favpage-note-tag">
+              <% note.tags.each do |tag| %>
+                <i class="fas fa-tags favpage-tag-img"></i>
+                <%= link_to "#{tag.name}", "/tag/#{tag.id}/notes", class: "tag" %>
+              <% end %>
+            </div>
+            <%= link_to note_path(note.id), class: "favpage_note_show" do %>
+              <div class="favpage-note-title">
+                <h3><%= note.title %></h3>
+               </div>
+            <% end %>
+            <div class="favpage-note-opt">
+              <div class="favpage-detail">
+                <div class="favpage-fav-comment">
+                  <i class="far fa-heart favpage-like-btn"></i>
+                  <i class="far fa-comment favpage-comment-btn"></i>
+                </div>
+                <div class="favpage-created">
+                  <div class="favpage-time"><%= note.created_at.strftime('%Y/%m/%d') %></div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="favpage-nation">
+        <ul class="pagenations">
+          <li class="page-nation"></li>
+          <li class="favpage-nation"><span>1/1</span></li>
+          <li class="page-nation"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mypage-footer">
+    <%= render 'shared/footer' %>
+</div>
+</div>
