@@ -22,9 +22,13 @@
         </div>
         <div class="lower-right">
           <div class="sns-session">
-            <p class="sns-login">SNSで登録</p>
-            <a href="#" class="twitter-session"><i class="fab fa-twitter twitter-icon"></i>Twitter</a>
-            <a href="#" class="facebook-session"><i class="fab fa-facebook-square facebook-icon"></i>Facebook</a>
+            <p class="sns-login">SNSで登録＆ログイン</p>
+              <%= link_to user_twitter_omniauth_authorize_path, method: :post, class: "twitter-session" do %>
+                <i class="fab fa-twitter twitter-icon"></i>Twitter
+              <% end %>
+              <%= link_to user_facebook_omniauth_authorize_path, method: :post, class: "facebook-session" do %>
+                <i class="fab fa-facebook-square facebook-icon"></i>Facebook
+              <% end %>
           </div>
         </div>
       </div>
