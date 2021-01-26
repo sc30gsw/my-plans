@@ -1,0 +1,388 @@
+.detail-page-wrapper {
+  background-color: #f0f0f0;
+  height: 100vh;
+}
+
+.favpage-main {
+  background-color: #f0f0f0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.top-left-content {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin: 10px 5px 10px 100px;
+  width: 60%;
+}
+
+.favpage-whose-list-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.likes-page-list-nav {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.likes-page-list-nav p {
+  font-size: 20px;
+}
+
+.favpage-whose-list-nav p {
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 18px;
+}
+
+.favpage-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 70px;
+  border: 1px solid #f0f0f0;
+}
+
+.favpage-icon:hover {
+  opacity: 0.7;
+}
+
+.whoes-list-name-link {
+  color: black;
+  text-decoration: none;
+}
+
+.whoes-list-name-link:hover {
+  color: black;
+}
+
+.item-pagenate {
+  margin-top: 20px;
+}
+
+.item-list {
+  list-style: none;
+  margin-top: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.favpage-user-info {
+  display: flex;
+  margin-left: 20px;
+}
+
+.favpage-user-info-detail {
+  margin-left: 8px;
+  margin-top: 3px;
+  display: flex;
+}
+
+.favpage-user-info-detail p {
+  color: grey;
+  opacity: 0.8;
+  word-break: break-all;
+}
+
+.likes-user-nickname {
+  margin-top: 3px;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.likes-user-page-nickname-link {
+  text-decoration: none;
+  color: black;
+}
+
+.likes-user-page-nickname-link:hover {
+  color: black;
+}
+
+.likes-user-profile {
+  display: flex;
+  margin: 8px 10px 8px 20px;
+}
+
+.likes-user-profile p {
+  word-break: break-all;
+}
+
+.likes-user-profile-btn {
+  margin-right: 10px;
+  font-size: 12px;
+  height: 20px;
+  font-weight: bold;
+  color: #fff;
+  border: 1px solid rgb(56, 135, 224);
+  border-radius: 3px;
+  padding: 1px 5px;
+  white-space: nowrap;
+  background-color: rgb(56, 135, 224);
+}
+
+.likes-user-opt {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.likes-user-icons {
+  margin-left: 20px;
+}
+
+.likes-user-regist-day {
+  margin-right: 20px;
+}
+
+.list-title-content {
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+.list-main-content a:hover {
+  color: black;
+}
+
+.list-detail-tag-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-tag-content {
+  margin-left: 20px;
+}
+
+.favpage-tag {
+  text-decoration: none;
+  color: black;
+}
+
+.favpage-tag:hover {
+  color: black;
+}
+
+.list-detail-content {
+  margin-right: 20px;
+}
+
+.list-detail-content span {
+  color: #808080;
+  font-weight: bold;
+  margin-left: 3px;
+}
+
+.favpage-like-btn {
+  width: 25px;
+  height: 30px;
+  font-size: 25px;
+  color: #808080;
+  margin-right: 5px;
+}
+
+.favpage-comment-btn {
+  width: 25px;
+  height: 30px;
+  font-size: 25px;
+  color: #808080;
+  margin-left: 5px;
+}
+
+.detail-page-more-note {
+  padding: 5px;
+}
+
+.detail-more-link {
+  text-decoration: none;
+  color: black;
+}
+
+.detail-more-link:hover {
+  color: black;
+}
+
+.top-right-content {
+  background-color: white;
+  margin: 10px 100px 10px 5px;
+  width: 35%;
+}
+
+.detail-page-user-card {
+  display: flex;
+  justify-content: center;
+}
+
+.detail-user-page-icon {
+  margin-top: 10px;
+  height: 80px;
+  width: 80px;
+  border-radius: 70px;
+}
+
+.detail-user-name {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.detail-user-firstname {
+  margin-right: 5px;
+}
+
+.detail-user-nickname {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.user-status-top {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.user-status-top a {
+  color: #808080;
+}
+
+.user-status-top a:hover {
+  color: #808080;
+}
+
+.user-status-top span {
+  display: flex;
+  justify-content: space-evenly;
+  font-weight: bold;
+}
+
+.user-status-bottom {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.user-status-bottom a {
+  color: #808080;
+}
+
+.user-status-bottom a:hover {
+  color: #808080;
+}
+
+.user-status-bottom span {
+  display: flex;
+  justify-content: space-evenly;
+  font-weight: bold;
+}
+
+.item-list-navi {
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.item-list-squere {
+  color: rgb(56, 135, 224);
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.my-item-list {
+  list-style: none;
+  margin-top: 10px;
+  border-bottom: 1px solid #808080;
+}
+
+.my-item-list-tag {
+  margin-left: 10px;
+  color: #808080;
+}
+
+.my-item-list-tag a {
+  color: #808080;
+  font-size: 15px;
+}
+
+.my-item-list-tag a:hover {
+  color: #808080;
+}
+
+.my-item-list-tag i {
+  font-size: 15px;
+}
+
+.my-item-list-detail {
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.my-item-list-detail a {
+  color: black;
+  text-decoration: none;
+}
+
+.my-item-list-detail a:hover {
+  color: black;
+}
+
+.my-item-list-rower {
+  display: flex;
+  justify-content: space-between;
+}
+
+.my-item-list-opt {
+  margin-left: 10px;
+  margin-top: 5px;
+  font-size: 13px;
+  color: #808080;
+}
+
+.my-item-list-opt span {
+  margin-left: 3px;
+}
+
+.my-item-list-created {
+  margin-right: 10px;
+  font-size: 13px;
+}
+
+.my-detail-page-nation {
+  padding: 5px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.detail-page-footer {
+  width: 100vw;
+  padding: 30px 0;
+  display: flex;
+  background-color: #3e3e3e;
+}
+
+@media (max-width: 599px) {
+  .favpage-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .top-left-content {
+    width: 100%;
+    margin: 10px;
+  }
+
+  .top-right-content {
+    width: 100%;
+    margin: 10px;
+  }
+}
