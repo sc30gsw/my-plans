@@ -62,11 +62,13 @@ RSpec.describe '投稿詳細', type: :system do
     expect(page).to have_selector '.comment-textarea'
   end
 
-  it 'ログインしていな状態ではnote詳細ページに遷移できるもののコメント入力欄が表示されない' do
+  it 'ログインしていな状態ではnote詳細ページに遷移できない' do
     # トップページに移動する
     visit root_path
-    # 投稿のタイトルリンクがあることを確認する
-    expect(page).to have_no_link(note_path(@note))
+    # タイトルリンクをクリックする
+    find(".note_show_links").click
+    # クリックするとログイン画面に遷移する
+    expect(current_path).to eq "/users/sign_in"
   end
 end
 
@@ -129,15 +131,23 @@ RSpec.describe '投稿編集', type: :system do
     it 'ログインしていないとnote1編集画面には遷移できないこと' do
       # トップページいる
       visit root_path
-      # note1にタイトルリンクがあることを確認する
-      expect(page).to have_no_link(note_path(@note1))
+      # note1にタイトルがあることを確認する
+      expect(page).to have_content(@note1.title)
+      # note1の詳細画面に遷移する
+      visit note_path(@note1)
+      # note1の詳細画面に遷移しようとするとログイン画面に遷移する
+      expect(current_path).to eq "/users/sign_in"
     end
 
     it 'ログインしていないとnote2編集画面には遷移できない' do
       # トップページにいる
       visit root_path
-      # note2にタイトルリンクがない
-      expect(page).to have_no_link(note_path(@note2))
+      # note2にタイトルがあることを確認する
+      expect(page).to have_content(@note2.title)
+      # note2の詳細画面に遷移する
+      visit note_path(@note2)
+      # note2の詳細画面に遷移しようとするとログイン画面に遷移する
+      expect(current_path).to eq "/users/sign_in"
     end
   end
 end
