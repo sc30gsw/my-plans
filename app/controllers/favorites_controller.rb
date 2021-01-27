@@ -1,4 +1,6 @@
 class FavoritesController < ApplicationController
+  before_action :authenticate_user!
+  
   def create
     @favorite = current_user.favorites.new(note_id: params[:note_id])
     @favorite.save

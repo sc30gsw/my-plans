@@ -1,4 +1,6 @@
 class NotificationsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     # current_userの投稿に紐付いた通知一覧
     @notifications = current_user.passive_notifications.order(created_at: :DESC)
