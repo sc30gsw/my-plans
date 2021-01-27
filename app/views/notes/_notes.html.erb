@@ -1,5 +1,4 @@
 <div class="note-user">
-<% if user_signed_in? %>
   <%= link_to user_path(notes.user.id) do %>
     <% if notes.user.intro.present? %>
       <div class="session-usericon">
@@ -10,7 +9,6 @@
         <img src="/assets/default.png" class="user-icon" alt="ユーザーアイコン">
       </div>
     <% end %>
-  <% end %>
   <%= link_to notes.user.nickname, user_path(notes.user.id), class: "user-id" %>
   <div class="created-at">
     が<%= notes.created_at.to_s(:datetime_jp) %>に投稿
@@ -21,7 +19,7 @@
   <div class="note-title">
     <h3><%= notes.title %></h3>
   </div>
-  <% end %>
+<% end %>
   <% notes.tags.each do |tag| %>
     <div class="note-tag">
       <i class="fas fa-tags tag-img"></i>
