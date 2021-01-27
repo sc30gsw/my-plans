@@ -66,9 +66,9 @@ RSpec.describe '投稿詳細', type: :system do
     # トップページに移動する
     visit root_path
     # タイトルリンクをクリックする
-    find(".note_show_links").click
+    find('.note_show_links').click
     # クリックするとログイン画面に遷移する
-    expect(current_path).to eq "/users/sign_in"
+    expect(current_path).to eq '/users/sign_in'
   end
 end
 
@@ -136,7 +136,7 @@ RSpec.describe '投稿編集', type: :system do
       # note1の詳細画面に遷移する
       visit note_path(@note1)
       # note1の詳細画面に遷移しようとするとログイン画面に遷移する
-      expect(current_path).to eq "/users/sign_in"
+      expect(current_path).to eq '/users/sign_in'
     end
 
     it 'ログインしていないとnote2編集画面には遷移できない' do
@@ -147,7 +147,7 @@ RSpec.describe '投稿編集', type: :system do
       # note2の詳細画面に遷移する
       visit note_path(@note2)
       # note2の詳細画面に遷移しようとするとログイン画面に遷移する
-      expect(current_path).to eq "/users/sign_in"
+      expect(current_path).to eq '/users/sign_in'
     end
   end
 end
