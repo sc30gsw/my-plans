@@ -4,7 +4,7 @@ class NotesController < ApplicationController
 
   def index
     @notes = Note.includes(:user).sort { |a, b| b.favorited_users.count <=> a.favorited_users.count }
-    @notes = Kaminari.paginate_array(@notes).page(params[:page]).per(6)
+    @notes = Kaminari.paginate_array(@notes).page(params[:page]).per(5)
   end
 
   def new
